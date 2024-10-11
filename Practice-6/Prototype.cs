@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Practice_6
 {
-    public class Character
+    public interface ICloneable<T>
+    {
+        T Clone();
+    }
+    public class Character : ICloneable<Character>
     {
         public int Health { get; set; }
         public int Strenght { get; set; }
@@ -37,7 +41,7 @@ namespace Practice_6
         }
     }
 
-    public class Weapon
+    public class Weapon : ICloneable<Weapon>
     { 
         public string Type { get; set; }
         public int Damage { get; set; }
@@ -67,7 +71,7 @@ namespace Practice_6
             return new Armor(this.Type, this.Defence);
         }
     }
-    public class Skill
+    public class Skill : ICloneable<Skill> {
     {
         public string Type { get; set; }
         public int Power { get; set; }
