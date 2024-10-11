@@ -45,7 +45,7 @@ namespace Practice_6
             Report jsonReport = director.GetReport();
             jsonReport.Export("report.json", Format.Json, jsonBuilder);
 
-            Console.WriteLine("Отчеты созданы и экспортированы.");*/
+            Console.WriteLine("Reports is done");*/
 
             Weapon Akimbo = new Weapon(".50 Akimbo", 150);
             Armor shield = new Armor("Dome Shield", 300);
