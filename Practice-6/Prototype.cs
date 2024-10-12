@@ -71,7 +71,7 @@ namespace Practice_6
             return new Armor(this.Type, this.Defence);
         }
     }
-    public class Skill : ICloneable<Skill> {
+    public class Skill : ICloneable<Skill> 
     {
         public string Type { get; set; }
         public int Power { get; set; }

@@ -7,10 +7,18 @@ namespace Practice_6
     {
         static void Main(string[] args)
         {
-            /*Logger logger = Logger.GetInstance();
+            Logger logger = Logger.GetInstance();
+            logger.SetLogLevel(LogLevel.INFO);
+            logger.SetLogFilePath("C:\\Users\\bauir\\OneDrive\\Рабочий стол\\parallel_log.txt");
 
-             logger.SetLogLevel(LogLevel.WARNING);
-             logger.Log(LogLevel.WARNING, "wdjlahvsdlkshjanbdlakawhbdb.amns");*/
+            Parallel.Invoke(
+                () => logger.Log("Thread 1: Info message", LogLevel.INFO),
+                () => logger.Log("Thread 2: Warning message", LogLevel.WARNING),
+                () => logger.Log("Thread 3: Error message", LogLevel.ERROR),
+                () => logger.Log("Thread 4: Another info message", LogLevel.INFO)
+            );
+
+            logger.ReadLogs();
 
             /*ReportStyle style = new ReportStyle { BackgroundColor = "White", FontColor = "Black", FontSize = 14 };
 

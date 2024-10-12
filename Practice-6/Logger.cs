@@ -14,6 +14,7 @@ namespace Practice_6
     internal class Logger
     {
         private static Logger _instance;
+        private static readonly object _lock = new object();
         private string _logFilePath = "C:\\Users\\bauir\\OneDrive\\Рабочий стол\\log.txt";
         public static LogLevel _level = LogLevel.INFO;
 
@@ -24,15 +25,27 @@ namespace Practice_6
 
         public static Logger GetInstance()
         {
-            if (_instance == null)
-                _instance = new Logger();
+            if(_instance == null)
+            {
+                lock (_lock)
+                {
+                    if (_instance == null)
+                        _instance = new Logger();
+                }
+            }
             return _instance;
         }
 
-        public void Log(LogLevel level, string message)
+        public void Log(string message, LogLevel level)
         {
-            if (_level == level)
-                File.AppendAllText(@"C:\Users\bauir\OneDrive\Рабочий стол\file.txt", level + " | " + message + Environment.NewLine);
+            if (_level <= level)
+            {
+                lock (_lock)
+                {
+                    if (_level == level)
+                        File.AppendAllText(@"C:\Users\bauir\OneDrive\Рабочий стол\file.txt", level + " | " + message + Environment.NewLine);
+                }
+            }
         }
         public void SetLogLevel(LogLevel level)
         {
